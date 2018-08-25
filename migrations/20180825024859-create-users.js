@@ -29,6 +29,7 @@ module.exports = {
       volunteeringDayMax: {
         type: Sequelize.INTEGER
       },
+      causes: Sequelize.ARRAY(Sequelize.INTEGER),
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

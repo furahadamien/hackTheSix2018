@@ -6,7 +6,26 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/config.json').settings;
 const userAuth = require('../auth/userAuth');
 
-/* GET todo listing. */
+/* GET users organizations. */
+router.get('/organizations', userAuth, async (req, res, next) => {
+  try {
+    const organizations = await model.Organizations.findAll({
+      where: {
+        causeId: {
+          $or: req.currentUser.causes
+        }
+      },
+      include: [
+        { model: model.Causes }
+      ]
+    });
+    res.send({ organizations: organizations });
+  } catch(err) {
+    console.log(err);
+  }
+});
+
+/* GET users listing. */
 router.get('/', userAuth, function (req, res, next) {
   model.Users.findAll({})
     .then(users => res.json({
@@ -20,16 +39,17 @@ router.get('/', userAuth, function (req, res, next) {
   }));
 });
 
-
-/* POST todo. */
+/* POST users. */
 router.post('/', function (req, res, next) {
   const hashedPassword = bcrypt.hashSync(req.body.password, 8);
   model.Users.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    location: req.body.location,
-    email: req.body.password,
-    password: hashedPassword
+    fullName: req.body.fullName,
+    country: req.body.country,
+    city: req.body.city,
+    email: req.body.email,
+    password: hashedPassword,
+    volunteeringDayMin: req.body.volunteeringDayMin,
+    volunteeringDayMax: req.body.volunteeringDayMax
   })
   .then(user => {
     const token = jwt.sign({ id: user.id }, config.jwt_secret, {

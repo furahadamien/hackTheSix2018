@@ -7,11 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     volunteeringDayMin: DataTypes.INTEGER,
-    volunteeringDayMax: DataTypes.INTEGER
+    volunteeringDayMax: DataTypes.INTEGER,
+    causes: DataTypes.ARRAY(DataTypes.INTEGER)
   }, {
   });
   Users.associate = function(models) {
-    // associations can be defined here
+
   };
   return Users;
 };

@@ -4,10 +4,19 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     address: DataTypes.STRING,
     description: DataTypes.STRING,
-    typeOfJob: DataTypes.STRING
+    typeOfJob: DataTypes.STRING,
+    causeId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+          model: 'causes',
+          key: 'id'
+      }
+    },
+    totalVolunteeringDays: DataTypes.INTEGER
   }, {});
   Organizations.associate = function(models) {
-    // associations can be defined here
+    Organizations.belongsTo(models.Causes, {foreignKey: 'causeId'});
   };
   return Organizations;
 };

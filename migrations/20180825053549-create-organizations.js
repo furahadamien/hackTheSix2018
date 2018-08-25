@@ -20,6 +20,17 @@ module.exports = {
       typeOfJob: {
         type: Sequelize.STRING
       },
+      causeId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+            model: 'Causes',
+            key: 'id'
+        }
+      },
+      totalVolunteeringDays: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
