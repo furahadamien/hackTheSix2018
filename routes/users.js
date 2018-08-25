@@ -19,9 +19,16 @@ router.get('/organizations', userAuth, async (req, res, next) => {
         { model: model.Causes }
       ]
     });
-    res.send({ organizations: organizations });
-  } catch(err) {
-    console.log(err);
+    res.json({
+      error: false,
+      data: organizations
+    });
+  } catch(error) {
+    res.json({
+      error: true,
+      data: [],
+      error: error.toString()
+    })
   }
 });
 
