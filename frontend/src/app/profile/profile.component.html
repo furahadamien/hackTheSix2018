@@ -1,1 +1,42 @@
-profile
+<div class="container">
+    <h1>Profile</h1>
+    <form (submit)="submit()">
+      <div class="form-group">
+        <label for="fullname">Fullname</label>
+        <input type="text" class="form-control" id="fullname" name="fullname" [(ngModel)]="profileData.fullName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" class="form-control" id="country" name="country" [(ngModel)]="profileData.country" required>
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city" [(ngModel)]="profileData.city" required>
+      </div>
+
+      <div class="form-group">
+        <label for="city">Email</label>
+        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="profileData.email" required>
+      </div>
+
+      <div class="form-group">
+          <label for="city">Password</label>
+          <input type="text" class="form-control" id="password" name="password" [(ngModel)]="profileData.password" required>
+      </div>
+
+      <div class="form-group" *ngFor="let cause of causes">
+          <label for="cause-{{cause.id}}">{{cause.name}}</label>
+          <input type="checkbox" class="form-control" id="cause-{{cause.id}}" name="cause-{{cause.id}}" [checked]="cause.checked" (change)="cause.checked = !cause.checked" required>
+      </div>
+
+      <label *ngFor="let days of daysToVolunteer">
+          <input type="radio" name="volunteerDays" [value]="days.id" [(ngModel)]="profileData.selectedDaysId"> 
+          {{ days.min }} - {{ days.max }}
+      </label>
+
+      <button type="submit" class="btn btn-success">Submit</button>
+
+    </form>
+</div>
