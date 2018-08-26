@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     address: DataTypes.STRING,
     description: DataTypes.STRING,
     typeOfJob: DataTypes.STRING,
+    image: DataTypes.STRING,
     causeId: {
       type: DataTypes.INTEGER,
       allowNull: true,

@@ -20,6 +20,9 @@ module.exports = {
       typeOfJob: {
         type: Sequelize.STRING
       },
+      image: {
+        type: Sequelize.STRING
+      },
       causeId: {
         type: Sequelize.INTEGER,
         allowNull: true,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,7 @@ import { Http } from '@angular/http';
 })
 export class ProfileComponent implements OnInit {
 
-  profileData = {
+  profileData:any = {
     country: '',
     city: '',
     email: '',
@@ -16,7 +17,8 @@ export class ProfileComponent implements OnInit {
     fullName: '',
     selectedDaysId: '',
     volunteeringDayMin: '',
-    volunteeringDayMax: ''
+    volunteeringDayMax: '',
+    selectedCauses: []
   };
 
   causes:any = [];
@@ -43,7 +45,8 @@ export class ProfileComponent implements OnInit {
     }
   ];
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() { 
     this.http.get('http://localhost:3000/causes/').subscribe(res => {
@@ -64,7 +67,16 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  setCauses() {
+    this.causes.forEach((element:any) => {
+      if(element.checked) {
+        this.profileData.selectedCauses.push(element.id);
+      }
+    });
+  }
+
   submit() {
+    this.setCauses();
     this.setDaysToVolunteer(this.profileData.selectedDaysId);
     const body = {
       fullName: this.profileData.fullName,
@@ -72,11 +84,17 @@ export class ProfileComponent implements OnInit {
       city: this.profileData.city,
       email: this.profileData.email,
       password: this.profileData.password,
-      volunteeringDayMin: this.profileData.volunteeringDayMin,
-      volunteeringDayMax: this.profileData.volunteeringDayMax
+      causes: this.profileData.selectedCauses
     };
     this.http.post('http://localhost:3000/users/', body).subscribe(res => {
-      console.log(res.ok);
+      if(res.ok) {
+        const body = JSON.parse(res['_body']);
+        localStorage.setItem('token', body.token);
+        this.router.navigate(['/organizations'], { queryParams: { 
+          volunteeringDayMin: this.profileData.volunteeringDayMin,
+          volunteeringDayMax: this.profileData.volunteeringDayMax
+        } });
+      }
     });
   }
 }

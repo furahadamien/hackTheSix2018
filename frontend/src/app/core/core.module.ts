@@ -4,13 +4,8 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { I18nService } from './i18n.service';
-import { HttpService } from './http/http.service';
-import { HttpCacheService } from './http/http-cache.service';
-import { ApiPrefixInterceptor } from './http/api-prefix.interceptor';
-import { ErrorHandlerInterceptor } from './http/error-handler.interceptor';
-import { CacheInterceptor } from './http/cache.interceptor';
+import { TokenInterceptor } from '../core/token.interceptor';
 
 @NgModule({
   imports: [
@@ -25,14 +20,12 @@ import { CacheInterceptor } from './http/cache.interceptor';
   ],
   providers: [
     I18nService,
-    HttpCacheService,
-    ApiPrefixInterceptor,
-    ErrorHandlerInterceptor,
-    CacheInterceptor,
     {
-      provide: HttpClient,
-      useClass: HttpService
-    }
+      // For interceptor to do token manipulation for authentication
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+  }
   ]
 })
 export class CoreModule {

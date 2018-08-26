@@ -7,23 +7,37 @@ const config = require('../config/config.json').settings;
 const userAuth = require('../auth/userAuth');
 
 /* GET users organizations. */
-router.get('/organizations', userAuth, async (req, res, next) => {
+router.post('/organizations', async (req, res, next) => {
   try {
-    const organizations = await model.Organizations.findAll({
-      where: {
-        causeId: {
-          $or: req.currentUser.causes
-        }
-      },
-      include: [
-        { model: model.Causes }
-      ]
+    const token = req.body['x-access-token'];
+    if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+    jwt.verify(token, config.jwt_secret, async function(err, decoded) {
+        if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+        const user = await model.Users.findOne({
+          where: {
+              id: decoded.id
+          }
+        });
+        const organizations = await model.Organizations.findAll({
+          where: {
+            causeId: {
+              $or: user.causes
+            },
+            totalVolunteeringDays: {
+              $between: [req.body.volunteeringDayMin, req.body.volunteeringDayMax]
+            }
+          },
+          include: [
+            { model: model.Causes }
+          ]
+        });
+        res.json({
+          error: false,
+          data: organizations
+        });
     });
-    res.json({
-      error: false,
-      data: organizations
-    });
-  } catch(error) {
+  } 
+  catch(error) {
     res.json({
       error: true,
       data: [],
@@ -49,12 +63,14 @@ router.get('/', userAuth, function (req, res, next) {
 /* POST users. */
 router.post('/', function (req, res, next) {
   const hashedPassword = bcrypt.hashSync(req.body.password, 8);
+  console.log(req.body.causes);
   model.Users.create({
     fullName: req.body.fullName,
     country: req.body.country,
     city: req.body.city,
     email: req.body.email,
-    password: hashedPassword
+    password: hashedPassword,
+    causes: req.body.causes
   })
   .then(user => {
     const token = jwt.sign({ id: user.id }, config.jwt_secret, {
