@@ -17,6 +17,9 @@
     height: 190px;
     border: 1px solid #c7c7c7;
     background: white;
+    .origanization-img {
+        height: 100%;
+    }
     .name {
         font-size: 20px;
         font-weight: 500;
@@ -26,6 +29,10 @@
         letter-spacing: 0.1px;
         text-align: center;
         color: #0091d8;
+        margin-bottom: 0px;
+        margin-top: 3rem;
+        padding-left: 1rem;
+        text-align: left;
     }
     .address {
         font-size: 16px;
@@ -36,6 +43,9 @@
         letter-spacing: 0.1px;
         text-align: center;
         color: #9b9b9b;
+        margin-top: 0.5rem;
+        padding-left: 1rem;
+        text-align: left;
     }
     .description {
         font-size: 16px;
@@ -46,6 +56,8 @@
         letter-spacing: 0.1px;
         color: #011936;
         width: 250px;
+        margin-top: 1.5rem;
+        padding-left: 1rem;
     }
     .type {
         font-size: 20px;
@@ -54,8 +66,9 @@
         font-stretch: normal;
         line-height: normal;
         letter-spacing: 0.1px;
-        text-align: center;
+        text-align: left;
         color: #011936;
+        margin-top: 3rem;
     }
     .signup {
         border-radius: 32px;
@@ -65,5 +78,29 @@
         height: 45px;
         border: none;
         cursor: pointer;
+    }
+}
+@media only screen and (max-width: 575.98px) {
+    .organization-card {
+        height: 135px;
+        .origanization-img {
+            height: 115px;
+        }
+        .signup {
+            width: 100%;
+            line-height: 30px;
+            height: 30px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        .name {
+            margin-top: 1rem;
+        }
+        .description {
+            display: none;
+        }
+        .type {
+            margin-top: 1rem;
+        }
     }
 }

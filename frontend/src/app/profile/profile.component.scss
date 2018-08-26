@@ -42,13 +42,14 @@
       color: #011936;
     }
     .form-check-label {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 500;
       font-style: normal;
       font-stretch: normal;
       line-height: normal;
       letter-spacing: 0.1px;
       color: #011936;
+      margin-bottom: 10px;
     }
     .submit-div {
       width: 265px;
@@ -61,6 +62,20 @@
         border: none;
         cursor: pointer;
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 575.98px) {
+  .outer-container {
+    width: 100%;
+    margin-top: 10px;
+    .title {
+      font-size: 25px;
+    }
+    .profile-description {
+      width: 100%;
+      font-size: 18px;
     }
   }
 }

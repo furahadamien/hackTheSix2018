@@ -2,15 +2,15 @@
     <h1 class="title">View Your Matched Opportunies!</h1>
     <div class="row no-gutters organization-card mt-3" *ngFor="let organization of organizations">
         <div class="col-4">
-            <img [src]="organization.image" class="w-100 h-100">
+            <img [src]="organization.image" class="w-100 origanization-img">
         </div>
         <div class="col-5">
-            <p class="name mt-5 mb-0 text-left pl-3">{{organization.name}}</p>
-            <p class="address mt-2 text-left pl-3">{{organization.address}}</p>
-            <p class="description mt-4 pl-3">{{organization.description}}</p>
+            <p class="name text-truncate">{{organization.name}}</p>
+            <p class="address text-truncate">{{organization.address}}</p>
+            <p class="description">{{organization.description}}</p>
         </div>
         <div class="col-3">
-            <p class="type text-left mt-5">{{organization.typeOfJob}}</p>
+            <p class="type text-truncate">{{organization.typeOfJob}}</p>
             <button class="signup mt-2">SIGN UP</button>
         </div>
     </div>
