@@ -1,1 +1,32 @@
-<router-outlet></router-outlet>
+<div class="main-banner mx-auto">
+    <!-- Desktop Version Topbar-->
+    <div class="d-none d-sm-block">
+        <div class="row w-100 banner mt-5 no-gutters">
+            <div class="col-6">
+                <img src="../../assets/Images/logo.png" class="logo h-100">
+                <p class="transform mb-0">Transform your compassion to action</p>
+            </div>
+            <div class="col-3 about">
+                <button class="text-right">About</button>
+            </div>
+            <div class="col-3 profile">
+                <button class="text-left">Profile</button>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Version Topbar-->
+    <div class="d-inline-block d-sm-none">
+        <div class="row mobile-banner">
+            <div class="col-3 pr-0">
+                <img src="../../assets/Images/logo.png" class="logo h-100">
+            </div>
+            <div class="col-6 text">
+                Transform your compassion to action
+            </div>
+            <div class="col-3 text-center">
+                <img src="../../assets/Images/menu.svg" class="menu h-100">
+            </div>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

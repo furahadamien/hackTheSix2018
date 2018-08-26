@@ -1,0 +1,68 @@
+.container {
+    margin-top: 50px;
+}
+
+.title {
+    font-size: 30px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.1px;
+    text-align: center;
+    color: #011936;
+}
+
+.organization-card {
+    height: 190px;
+    border: 1px solid #c7c7c7;
+    background: white;
+    .name {
+        font-size: 20px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 0.1px;
+        text-align: center;
+        color: #0091d8;
+    }
+    .address {
+        font-size: 16px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 0.1px;
+        text-align: center;
+        color: #9b9b9b;
+    }
+    .description {
+        font-size: 16px;
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 0.1px;
+        color: #011936;
+    }
+    .type {
+        font-size: 20px;
+        font-weight: 800;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 0.1px;
+        text-align: center;
+        color: #011936;
+    }
+    .signup {
+        border-radius: 32px;
+        background-color: #011936;
+        color: white;
+        width: 150px;
+        height: 45px;
+        border: none;
+        cursor: pointer;
+    }
+}

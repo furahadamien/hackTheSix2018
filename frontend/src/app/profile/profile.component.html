@@ -1,42 +1,61 @@
-<div class="container">
-    <h1>Profile</h1>
-    <form (submit)="submit()">
-      <div class="form-group">
-        <label for="fullname">Fullname</label>
-        <input type="text" class="form-control" id="fullname" name="fullname" [(ngModel)]="profileData.fullName" required>
+<div class="outer-container mx-auto">
+  <h2 class="title">Build a Profile</h2>
+  <p class="profile-description mx-auto">
+      Before you start, we just need to know a few things about where you want to volunteer. 
+  </p>
+  <form (submit)="submit()">
+    <div class="form-group">
+        <label for="country">1. Which country are you in ?</label>
+        <input type="text" class="form-control" id="country" placeholder="Enter country" name="country"
+        [(ngModel)]="profileData.country" required>
+    </div>
+    <div class="form-group">
+        <label for="city">2. Which city are you in ?</label>
+        <input type="city" class="form-control" id="city" placeholder="Enter city" name="city"
+        [(ngModel)]="profileData.city" required>
+    </div>
+    <div class="form-group">
+        <label for="interests">3. Which causes are you interested in ?</label>
+        <div class="form-check" *ngFor="let cause of causes">
+            <input class="form-check-input" type="checkbox" value="false" id="cause-{{cause.id}}"
+            name="cause-{{cause.id}}" [checked]="cause.checked" (change)="cause.checked = !cause.checked" required>
+            <label class="form-check-label" for="cause-{{cause.id}}">
+              {{cause.name}}
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">4. How long do you want to volunteer for ?</label>
+        <div class="form-check" *ngFor="let v of daysToVolunteer">
+            <input class="form-check-input" type="radio" name="volunteer" id="volunteer-{{v.id}}" 
+             [value]="v.id" [(ngModel)]="profileData.selectedDaysId">
+            <label class="form-check-label" for="volunteer-{{v.id}}">
+              {{v.min}} - {{v.max}}
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        Now just a little bit about you. 
+    </div>
+    <div class="form-group">
+        <label for="fullName">5. What's your full name ?</label>
+        <input type="fullName" class="form-control" id="fullName" placeholder="Enter fullname" name="fullName"
+        [(ngModel)]="profileData.fullName" required>
+    </div>
+    <div class="form-group">
+        <label for="email">6. What's your email ?</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
+        [(ngModel)]="profileData.email" required>
+    </div>
+    <div class="form-group">
+        <label for="password">7. Set the password</label>
+        <input type="text" class="form-control" id="password" placeholder="Enter password" name="password"
+        [(ngModel)]="profileData.password" required>
+    </div>
+    <div class="form-group">
+      <div class="row submit-div mx-auto">
+          <button class="submit">SUBMIT</button>
       </div>
-
-      <div class="form-group">
-        <label for="country">Country</label>
-        <input type="text" class="form-control" id="country" name="country" [(ngModel)]="profileData.country" required>
-      </div>
-
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" class="form-control" id="city" name="city" [(ngModel)]="profileData.city" required>
-      </div>
-
-      <div class="form-group">
-        <label for="city">Email</label>
-        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="profileData.email" required>
-      </div>
-
-      <div class="form-group">
-          <label for="city">Password</label>
-          <input type="text" class="form-control" id="password" name="password" [(ngModel)]="profileData.password" required>
-      </div>
-
-      <div class="form-group" *ngFor="let cause of causes">
-          <label for="cause-{{cause.id}}">{{cause.name}}</label>
-          <input type="checkbox" class="form-control" id="cause-{{cause.id}}" name="cause-{{cause.id}}" [checked]="cause.checked" (change)="cause.checked = !cause.checked" required>
-      </div>
-
-      <label *ngFor="let days of daysToVolunteer">
-          <input type="radio" name="volunteerDays" [value]="days.id" [(ngModel)]="profileData.selectedDaysId"> 
-          {{ days.min }} - {{ days.max }}
-      </label>
-
-      <button type="submit" class="btn btn-success">Submit</button>
-
-    </form>
+    </div>
+  </form>
 </div>

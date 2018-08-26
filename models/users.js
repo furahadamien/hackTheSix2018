@@ -6,8 +6,6 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    volunteeringDayMin: DataTypes.INTEGER,
-    volunteeringDayMax: DataTypes.INTEGER,
     causes: DataTypes.ARRAY(DataTypes.INTEGER)
   }, {
   });

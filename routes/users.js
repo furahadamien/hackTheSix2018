@@ -54,9 +54,7 @@ router.post('/', function (req, res, next) {
     country: req.body.country,
     city: req.body.city,
     email: req.body.email,
-    password: hashedPassword,
-    volunteeringDayMin: req.body.volunteeringDayMin,
-    volunteeringDayMax: req.body.volunteeringDayMax
+    password: hashedPassword
   })
   .then(user => {
     const token = jwt.sign({ id: user.id }, config.jwt_secret, {

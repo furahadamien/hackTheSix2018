@@ -23,12 +23,6 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      volunteeringDayMin: {
-        type: Sequelize.INTEGER
-      },
-      volunteeringDayMax: {
-        type: Sequelize.INTEGER
-      },
       causes: Sequelize.ARRAY(Sequelize.INTEGER),
       createdAt: {
         allowNull: false,
