@@ -37,6 +37,30 @@ module.exports = {
             totalVolunteeringDays:3,
             createdAt: new Date(),
             updatedAt: new Date()
+        },
+        {
+            id: 4,
+            name: 'City of toronto special events office',
+            address: '50 bloor St, Toronto',
+            description: 'Teach and help elementary students with their math homework.',
+            typeOfJob: 'Math Tutor',
+            image: 'https://vmcdn.ca/f/files/shared/corporate-logos/ymca-logo.jpg;w=630',
+            causeId: 2,
+            totalVolunteeringDays:2,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        },
+        {
+            id: 5,
+            name: 'Toronto wildlife center',
+            address: '50 bloor St, Toronto',
+            description: 'The Toronto Wildlife Centre (TWC) is a leader in the field of wildlife rescue, veterinary care, rehabilitation and education, providing a vital and unique service in Southern Ontario.',
+            typeOfJob: 'Math Tutor',
+            image: 'https://vmcdn.ca/f/files/shared/corporate-logos/ymca-logo.jpg;w=630',
+            causeId: 2,
+            totalVolunteeringDays:2,
+            createdAt: new Date(),
+            updatedAt: new Date()
         }
     ]);
   },
